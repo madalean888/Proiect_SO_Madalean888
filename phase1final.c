@@ -348,7 +348,7 @@ int update_threshold(const char* district_id, int value, char* user, char* role)
         return -1;
     }
 
-    char buff[30];
+    char buff[50];
     int buff_len=snprintf(buff,sizeof(buff),"Severity threshold setted at level %d!\n",value);
 
     write(districtCFG,buff,buff_len);
