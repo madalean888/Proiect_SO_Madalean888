@@ -190,6 +190,7 @@ int list(const char* district_id){
 
     struct stat st;
     if(stat(path,&st)==0){
+        printf("Permissions: ");
         printf((st.st_mode & S_IRUSR) ? "r" : "-");
         printf((st.st_mode & S_IWUSR) ? "w" : "-");
         printf((st.st_mode & S_IXUSR) ? "x" : "-");
@@ -198,7 +199,9 @@ int list(const char* district_id){
         printf((st.st_mode & S_IXGRP) ? "x" : "-");
         printf((st.st_mode & S_IROTH) ? "r" : "-");
         printf((st.st_mode & S_IWOTH) ? "w" : "-");
-        printf((st.st_mode & S_IXOTH) ? "x\n" : "-\n");
+        printf((st.st_mode & S_IXOTH) ? "x" : "-");
+
+        printf(" | Size: %ld bytes | Last modified: %s\n", st.st_size, ctime(&st.st_mtime));
     }
 
     Report r;
